@@ -41,9 +41,9 @@ public class TradeMeTest {
     public void testGold() throws Exception
     {
 
-        resultPage = homePage.searchForSomething();
+        resultPage = homePage.searchForSomething("gold");
 
-        String count = resultPage.totalAmount();
+        int count = resultPage.totalAmount();
         WebElement listings = driver.findElement(By.xpath("//*[@id=\"SuperGridGallery_BucketList_ClassifiedPrice_listingClassifiedPriceAmountPoa\"]"));
         WebElement clickView = driver.findElement(By.xpath("//*[@id=\"ListingViewBar_listViewTab_icon_a\"]"));
         System.out.println(listings.getText());

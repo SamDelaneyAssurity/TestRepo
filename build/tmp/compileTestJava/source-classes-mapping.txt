@@ -6,3 +6,5 @@ TradeMeTest.java
  TradeMeTest
 pages/ResultPage.java
  pages.ResultPage
+Steps/TradeMeSteps.java
+ Steps.TradeMeSteps
