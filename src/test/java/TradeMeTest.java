@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -10,37 +11,45 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.HomePage;
+import pages.ResultPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TradeMeTest {
+    private HomePage homePage;
     private WebDriver driver;
+    private ResultPage resultPage;
+
+
+    @BeforeAll
+    public static void setupClass()
+    {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeEach
+    public void setupBrowser()
+    {
+        driver = new ChromeDriver();
+        driver.get(("https://www.tmsandbox.co.nz"));
+        homePage = new HomePage(driver);
+    }
 
 
     @Test
     public void testGold() throws Exception
     {
-        System.out.println("hello");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("https://www.tmsandbox.co.nz/");
-        WebElement button = driver.findElement(By.cssSelector("#generalSearch > div.field.field-right"));
-        WebElement search = driver.findElement(By.xpath("//*[@id=\"searchString\"]"));
-        search.sendKeys("gold");
-        //search.submit();
-        search.sendKeys(Keys.RETURN);
-        WebDriverWait webDriver = new WebDriverWait(driver, 5);
-        webDriver.until(ExpectedConditions.visibilityOfElementLocated(By.id("Footer_FooterLinks_browseLink")));
-        //button.click();
-        WebElement count = driver.findElement(By.cssSelector("#totalCount"));
+
+        resultPage = homePage.searchForSomething();
+
+        String count = resultPage.totalAmount();
         WebElement listings = driver.findElement(By.xpath("//*[@id=\"SuperGridGallery_BucketList_ClassifiedPrice_listingClassifiedPriceAmountPoa\"]"));
         WebElement clickView = driver.findElement(By.xpath("//*[@id=\"ListingViewBar_listViewTab_icon_a\"]"));
         System.out.println(listings.getText());
-        //assertEquals(listings.getText(), "For sale by tender");
-        System.out.println("Amount of listing "+count.getText());
-        //assertEquals(count.getText(), "28");
+        System.out.println("Amount of listing "+count);
         clickView.click();
-        webDriver.until(ExpectedConditions.visibilityOfElementLocated(By.id("Footer_FooterLinks_browseLink")));
+        Thread.sleep(5000);
         Select select = new Select(driver.findElement(By.id("listingTitleBarSelect")));
         select.selectByValue("buynow_asc");
         WebElement list = driver.findElement(By.cssSelector("#mainContent"));
@@ -53,4 +62,5 @@ public class TradeMeTest {
         System.out.println("Name "+title.getText());
         driver.quit();
     }
+
 }
