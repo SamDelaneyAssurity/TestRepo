@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TradeMeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-14T02:50:05" hostname="ASY-WIN10-67" time="10.527">
+  <properties/>
+  <testcase name="testGold()" classname="TradeMeTest" time="10.527"/>
+  <system-out><![CDATA[hello
+Price by negotiation
+Amount of listing 26
+price: 1 $1.00 dollers
+price: 2 $1.00 dollers
+Name RNZAF 50th Anniversary A-4K Skyhawk
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Starting ChromeDriver 91.0.4472.101 (af52a90bf87030dd1523486a1cd3ae25c5d76c9b-refs/branch-heads/4472@{#1462}) on port 46242
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Jul 14, 2021 2:50:06 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
