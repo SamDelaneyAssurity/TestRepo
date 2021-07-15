@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pages.HomePage;
 import pages.ResultPage;
 
@@ -21,6 +22,13 @@ public class TradeMeSteps {
         driver = new ChromeDriver();
         driver.get(("https://www.tmsandbox.co.nz"));
         homePage = new HomePage(driver);
+        ChromeOptions options = new ChromeOptions();
+        if (("true").equals(System.getenv("HEADLESS_CHROME"))) {
+            options.addArguments("--headless");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+        }
+        driver = new ChromeDriver(options);
     }
 
     @When("I search for {string}")
