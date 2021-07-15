@@ -19,9 +19,6 @@ public class TradeMeSteps {
     @Given("I am conducting a TradeMe search")
     public void iAmConductingATradeMeSearch() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get(("https://www.tmsandbox.co.nz"));
-        homePage = new HomePage(driver);
         ChromeOptions options = new ChromeOptions();
         if (("true").equals(System.getenv("HEADLESS_CHROME"))) {
             options.addArguments("--headless");
@@ -29,6 +26,8 @@ public class TradeMeSteps {
             options.addArguments("--disable-dev-shm-usage");
         }
         driver = new ChromeDriver(options);
+        driver.get(("https://www.tmsandbox.co.nz"));
+        homePage = new HomePage(driver);
     }
 
     @When("I search for {string}")
